@@ -458,7 +458,7 @@ f_fuzzy_match :: proc "c" (L: ^lua.State) -> i32 {
 		s := str[i]
 		p := ptn[j]
 		if libc.tolower(i32(s)) == libc.tolower(i32(p)) {
-			score += run * 10 - (s != p)
+			score += run * 10 - i32(s != p)
 			run += 1
 			j += 1
 		} else {

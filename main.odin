@@ -37,8 +37,10 @@ get_exe_filename :: proc() -> cstring {
 get_scale :: proc() -> f64 {
 	dpi: f32
 	_ = sdl.GetDisplayDPI(0, nil, &dpi, nil)
-	when ODIN_OS == .Windows {
+	when ODIN_OS == .Windows || ODIN_OS == .Linux{
 		return f64(dpi) / 96.0
+	} else when ODIN_OS == .Darwin {
+		return f64(dpi) / 72.0
 	}
 	return 1.0
 }
